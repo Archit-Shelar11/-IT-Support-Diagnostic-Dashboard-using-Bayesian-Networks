@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Diagnostic System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🩺</div>
+            <h1>IT Support Diagnostic Dashboard</h1>
+            <p>Helpdesk Troubleshooting Assistant</p>
+            <div style="margin-top: 1rem;">
+                <a href="/cpts" style="color: var(--primary); font-weight: 500; text-decoration: none; border: 1px solid var(--primary); padding: 0.5rem 1rem; border-radius: 6px; display: inline-block;">📊 View Analytical CPTs</a>
+            </div>
+        </header>
+
+        <main class="dashboard">
+            <section class="panel control-panel glass">
+                <h2>Evidence Panel</h2>
+                <form id="diagnosisForm">
+                    <div class="input-group">
+                        <label for="power_supply">Power Supply</label>
+                        <select id="power_supply" name="Power_Supply">
+                            <option value="Unknown">Unknown</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Unstable">Unstable</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="app_status">Application Status</label>
+                        <select id="app_status" name="Application_Status">
+                            <option value="Unknown">Unknown</option>
+                            <option value="Down" selected>Down</option>
+                            <option value="Available">Available</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="latency">Network Latency</label>
+                        <select id="latency" name="Network_Latency">
+                            <option value="Unknown">Unknown</option>
+                            <option value="High">High</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="packet_loss">Packet Loss</label>
+                        <select id="packet_loss" name="Packet_Loss">
+                            <option value="Unknown">Unknown</option>
+                            <option value="High">High</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="server_load">Server Load</label>
+                        <select id="server_load" name="Server_Load">
+                            <option value="Unknown">Unknown</option>
+                            <option value="High">High</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="db_status">Database Status</label>
+                        <select id="db_status" name="Database_Status">
+                            <option value="Unknown">Unknown</option>
+                            <option value="Available">Available</option>
+                            <option value="Corrupt">Corrupt</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="primary-btn">
+                        <span>Run Diagnosis</span>
+                        <div class="loader hidden" id="loader"></div>
+                    </button>
+                </form>
+            </section>
+
+            <section class="panel network-panel glass">
+                <h2>Causal Network (DAG)</h2>
+                <div id="cy" style="width: 100%; height: 400px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 8px;"></div>
+            </section>
+
+            <section class="panel results-panel glass">
+                <h2>Diagnostic Results</h2>
+                <div id="resultsContainer">
+                    <div class="empty-state">
+                        <p>Submit evidence to see probable causes.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
